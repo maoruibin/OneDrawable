@@ -29,7 +29,7 @@ Add the dependency
 
 ```
 dependencies {
-    compile 'com.github.maoruibin:StateBackgroundUtil:1.0.0'
+    compile 'com.github.maoruibin:StateBackgroundUtil:1.0.1'
 }
 ```
 

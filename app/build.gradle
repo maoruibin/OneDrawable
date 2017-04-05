@@ -36,6 +36,6 @@ android {
 }
 
 dependencies {
-//    compile 'com.github.maoruibin:StateBackgroundUtil:1.0.0'
-    compile project(":library")
+    compile 'com.github.maoruibin:StateBackgroundUtil:1.0.1'
+//    compile project(":library")
 }
