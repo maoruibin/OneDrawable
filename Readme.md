@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/maoruibin/StateBackgroundUtil.svg?branch=master)](https://travis-ci.org/maoruibin/StateBackgroundUtil)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ReView/blob/master/LICENSE.txt)
 
-Only use one drawable resource to set the background of the View.
+Only use one drawable resource to set the background of the View.|[StateBackgroundUtil - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/statebackgroundutil.html)
 
 ![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackground.gif)
 
@@ -46,6 +46,22 @@ pressed state with alpha mode. In this mode, drawable will automatically change 
 Drawable icon3 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_add);
 tvIcon3.setBackgroundDrawable(icon3);
 ```
+
+### Custom Alpha value
+
+Sometimes, maybe you need custom alpha value, you can use methods like follows.
+ 
+```java
+Drawable icon2 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_add,0.4f);
+tvIcon2.setBackgroundDrawable(icon2);
+
+Drawable icon4 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+tvIcon4.setBackgroundDrawable(icon4);
+
+``` 
+
+Note: `Because of only clickable view show it's pressed drawable, so you should set view clickable as true before you want to watch pressed effect.`
+
 
 ## TODO
 - [ ] support color background 

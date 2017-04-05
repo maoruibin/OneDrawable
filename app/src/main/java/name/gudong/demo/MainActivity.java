@@ -54,7 +54,8 @@ public class MainActivity extends Activity {
         tvIcon3.setBackgroundDrawable(icon3);
         tvIcon3.setClickable(true);
 
-        tvIcon4.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name,0.3f));
+        Drawable icon4 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+        tvIcon4.setBackgroundDrawable(icon4);
         tvIcon4.setClickable(true);
 
         tvIcon5.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.bk_round));
