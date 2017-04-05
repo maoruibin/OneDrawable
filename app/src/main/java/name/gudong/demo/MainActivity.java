@@ -22,7 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import name.gudong.statebackground.StateBackgroundUtil;
+import name.gudong.statebackground.OneDrawable;
 
 public class MainActivity extends Activity {
     private TextView tvIcon1;
@@ -47,31 +47,31 @@ public class MainActivity extends Activity {
         tvColor3 = (TextView) findViewById(R.id.tv_color_3);
 
 
-        Drawable icon1 = StateBackgroundUtil.createDrawableBg(this,R.drawable.ic_action_add);
+        Drawable icon1 = OneDrawable.createBgDrawable(this,R.drawable.ic_action_add);
         tvIcon1.setBackgroundDrawable(icon1);
         tvIcon1.setClickable(true);
 
-        Drawable icon2 = StateBackgroundUtil.createDrawableBgWithDarkMode(this,R.drawable.ic_action_add,0.4f);
+        Drawable icon2 = OneDrawable.createBgDrawableWithDarkMode(this,R.drawable.ic_action_add,0.4f);
         tvIcon2.setBackgroundDrawable(icon2);
         tvIcon2.setClickable(true);
 
-        Drawable icon3 = StateBackgroundUtil.createDrawableBgWithAlphaMode(this,R.drawable.ic_action_name);
+        Drawable icon3 = OneDrawable.createBgDrawableWithAlphaMode(this,R.drawable.ic_action_name);
         tvIcon3.setBackgroundDrawable(icon3);
         tvIcon3.setClickable(true);
 
-        Drawable icon4 = StateBackgroundUtil.createDrawableBgWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+        Drawable icon4 = OneDrawable.createBgDrawableWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
         tvIcon4.setBackgroundDrawable(icon4);
         tvIcon4.setClickable(true);
 
-        Drawable color1 = StateBackgroundUtil.createColorBgWithAlphaMode(this,R.color.colorPrimary);
+        Drawable color1 = OneDrawable.createBgColorWithAlphaMode(this,R.color.colorPrimary);
         tvColor1.setBackgroundDrawable(color1);
         tvColor1.setClickable(true);
 
-        Drawable color2 = StateBackgroundUtil.createColorBg(this,R.color.colorAccent);
+        Drawable color2 = OneDrawable.createBgColor(this,R.color.colorAccent);
         tvColor2.setBackgroundDrawable(color2);
         tvColor2.setClickable(true);
 
-        Drawable color3 = StateBackgroundUtil.createColorBg(Color.parseColor("#cccccc"));
+        Drawable color3 = OneDrawable.createBgColor(Color.parseColor("#cccccc"));
         tvColor3.setBackgroundDrawable(color3);
         tvColor3.setClickable(true);
     }

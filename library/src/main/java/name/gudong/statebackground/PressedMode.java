@@ -24,7 +24,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * Press the state of the implementation
  */
-public class StatePressedMode {
+public class PressedMode {
     @IntDef({ALPHA, DARK})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Mode {}

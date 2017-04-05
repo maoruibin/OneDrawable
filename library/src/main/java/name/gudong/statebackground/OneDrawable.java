@@ -34,7 +34,7 @@ import android.support.annotation.NonNull;
  * Contact with gudong.name@gmail.com.
  */
 
-public class StateBackgroundUtil {
+public class OneDrawable {
     /**
      * 默认的按下后的透明度变化值
      */
@@ -44,56 +44,56 @@ public class StateBackgroundUtil {
      */
     private static final float DEFAULT_DARK_ALPHA_VALUE = 0.2f;
 
-    public static Drawable createDrawableBg(@NonNull Context context, @DrawableRes int res) {
-        return createDrawableBgWithDarkMode(context, res);
+    public static Drawable createBgDrawable(@NonNull Context context, @DrawableRes int res) {
+        return createBgDrawableWithDarkMode(context, res);
     }
 
-    public static Drawable createColorBg(Context context, @ColorRes int res) {
-        return createColorBgWithDarkMode(context, res);
+    public static Drawable createBgColor(Context context, @ColorRes int res) {
+        return createBgColorWithDarkMode(context, res);
     }
 
-    public static Drawable createColorBg(@ColorInt int res) {
-        return createColorBgWithDarkMode(res);
+    public static Drawable createBgColor(@ColorInt int res) {
+        return createBgColorWithDarkMode(res);
     }
 
-    public static Drawable createDrawableBgWithAlphaMode(@NonNull Context context, @DrawableRes int res) {
-        return createDrawableBgWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
+    public static Drawable createBgDrawableWithAlphaMode(@NonNull Context context, @DrawableRes int res) {
+        return createBgDrawableWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
     }
 
-    public static Drawable createDrawableBgWithAlphaMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createDrawableBackground(context, res, StatePressedMode.ALPHA, alpha);
+    public static Drawable createBgDrawableWithAlphaMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgDrawable(context, res, PressedMode.ALPHA, alpha);
     }
 
-    public static Drawable createDrawableBgWithDarkMode(@NonNull Context context, @DrawableRes int res) {
-        return createDrawableBgWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
+    public static Drawable createBgDrawableWithDarkMode(@NonNull Context context, @DrawableRes int res) {
+        return createBgDrawableWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
     }
 
-    public static Drawable createDrawableBgWithDarkMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createDrawableBackground(context, res, StatePressedMode.DARK, alpha);
+    public static Drawable createBgDrawableWithDarkMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgDrawable(context, res, PressedMode.DARK, alpha);
     }
 
-    public static Drawable createColorBgWithAlphaMode(@NonNull Context context, @ColorRes int res) {
-        return createColorBgWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
+    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorRes int res) {
+        return createBgColorWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
     }
 
-    public static Drawable createColorBgWithAlphaMode(@NonNull Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createColorBg(context, res, StatePressedMode.ALPHA, alpha);
+    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgColor(context, res, PressedMode.ALPHA, alpha);
     }
 
-    public static Drawable createColorBgWithDarkMode(@ColorInt int res) {
-        return createColorBgWithDarkMode(res, DEFAULT_DARK_ALPHA_VALUE);
+    public static Drawable createBgColorWithDarkMode(@ColorInt int res) {
+        return createBgColorWithDarkMode(res, DEFAULT_DARK_ALPHA_VALUE);
     }
 
-    public static Drawable createColorBgWithDarkMode(@ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createColorBg(res, StatePressedMode.DARK, alpha);
+    public static Drawable createBgColorWithDarkMode(@ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgColor(res, PressedMode.DARK, alpha);
     }
 
-    public static Drawable createColorBgWithDarkMode(Context context, @ColorRes int res) {
-        return createColorBgWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
+    public static Drawable createBgColorWithDarkMode(Context context, @ColorRes int res) {
+        return createBgColorWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
     }
 
-    public static Drawable createColorBgWithDarkMode(Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createColorBg(context, res, StatePressedMode.DARK, alpha);
+    public static Drawable createBgColorWithDarkMode(Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgColor(context, res, PressedMode.DARK, alpha);
     }
 
     /**
@@ -105,7 +105,7 @@ public class StateBackgroundUtil {
      * @param alpha   value
      * @return a stateListDrawable
      */
-    private static Drawable createDrawableBackground(@NonNull Context context, @DrawableRes int res, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    private static Drawable createBgDrawable(@NonNull Context context, @DrawableRes int res, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         Drawable normal = context.getResources().getDrawable(res);
         Drawable pressed = context.getResources().getDrawable(res);
         pressed.mutate();
@@ -114,12 +114,12 @@ public class StateBackgroundUtil {
         return createStateListDrawable(normal, pressed);
     }
 
-    private static Drawable createColorBg(Context context, @ColorRes int resBackgroundColor, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    private static Drawable createBgColor(Context context, @ColorRes int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         @ColorInt int color = context.getResources().getColor(resBackgroundColor);
-        return createColorBg(color, mode, alpha);
+        return createBgColor(color, mode, alpha);
     }
 
-    private static Drawable createColorBg(@ColorInt int resBackgroundColor, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    private static Drawable createBgColor(@ColorInt int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         ColorDrawable colorDrawableNormal = new ColorDrawable();
         ColorDrawable colorDrawablePressed = new ColorDrawable();
 
@@ -139,12 +139,12 @@ public class StateBackgroundUtil {
     }
 
 
-    private static void setPressedStateDrawable(@StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha, @NonNull Drawable pressed) {
+    private static void setPressedStateDrawable(@PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha, @NonNull Drawable pressed) {
         switch (mode) {
-            case StatePressedMode.ALPHA:
+            case PressedMode.ALPHA:
                 pressed.setAlpha(convertAlphaToInt(alpha));
                 break;
-            case StatePressedMode.DARK:
+            case PressedMode.DARK:
                 pressed.setColorFilter(alphaColor(Color.BLACK, convertAlphaToInt(alpha)), PorterDuff.Mode.SRC_ATOP);
                 break;
             default:
@@ -158,16 +158,5 @@ public class StateBackgroundUtil {
 
     private static int alphaColor(@ColorInt int color, @IntRange(from = 0, to = 255) int alpha) {
         return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
-    }
-
-    static float getDefaultAlpha(@StatePressedMode.Mode int mode) {
-        switch (mode) {
-            case StatePressedMode.ALPHA:
-                return DEFAULT_ALPHA_VALUE;
-            case StatePressedMode.DARK:
-                return DEFAULT_DARK_ALPHA_VALUE;
-            default:
-                return DEFAULT_ALPHA_VALUE;
-        }
     }
 }
