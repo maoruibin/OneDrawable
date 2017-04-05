@@ -17,6 +17,7 @@
 package name.gudong.demo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -28,8 +29,9 @@ public class MainActivity extends Activity {
     private TextView tvIcon2;
     private TextView tvIcon3;
     private TextView tvIcon4;
-    private TextView tvIcon5;
-    private TextView tvIcon6;
+    private TextView tvColor1;
+    private TextView tvColor2;
+    private TextView tvColor3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,29 +41,38 @@ public class MainActivity extends Activity {
         tvIcon2 = (TextView) findViewById(R.id.tv_icon_2);
         tvIcon3 = (TextView) findViewById(R.id.tv_icon_3);
         tvIcon4 = (TextView) findViewById(R.id.tv_icon_4);
-        tvIcon5 = (TextView) findViewById(R.id.tv_icon_5);
-        tvIcon6 = (TextView) findViewById(R.id.tv_icon_6);
 
-        Drawable icon1 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_add);
+        tvColor1 = (TextView) findViewById(R.id.tv_color_1);
+        tvColor2 = (TextView) findViewById(R.id.tv_color_2);
+        tvColor3 = (TextView) findViewById(R.id.tv_color_3);
+
+
+        Drawable icon1 = StateBackgroundUtil.createDrawableBg(this,R.drawable.ic_action_add);
         tvIcon1.setBackgroundDrawable(icon1);
         tvIcon1.setClickable(true);
 
-        Drawable icon2 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_add,0.4f);
+        Drawable icon2 = StateBackgroundUtil.createDrawableBgWithDarkMode(this,R.drawable.ic_action_add,0.4f);
         tvIcon2.setBackgroundDrawable(icon2);
         tvIcon2.setClickable(true);
 
-        Drawable icon3 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name);
+        Drawable icon3 = StateBackgroundUtil.createDrawableBgWithAlphaMode(this,R.drawable.ic_action_name);
         tvIcon3.setBackgroundDrawable(icon3);
         tvIcon3.setClickable(true);
 
-        Drawable icon4 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+        Drawable icon4 = StateBackgroundUtil.createDrawableBgWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
         tvIcon4.setBackgroundDrawable(icon4);
         tvIcon4.setClickable(true);
 
-        tvIcon5.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.bk_round));
-        tvIcon5.setClickable(true);
+        Drawable color1 = StateBackgroundUtil.createColorBgWithAlphaMode(this,R.color.colorPrimary);
+        tvColor1.setBackgroundDrawable(color1);
+        tvColor1.setClickable(true);
 
-        tvIcon6.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.bk_round,0.3f));
-        tvIcon6.setClickable(true);
+        Drawable color2 = StateBackgroundUtil.createColorBg(this,R.color.colorAccent);
+        tvColor2.setBackgroundDrawable(color2);
+        tvColor2.setClickable(true);
+
+        Drawable color3 = StateBackgroundUtil.createColorBg(Color.parseColor("#cccccc"));
+        tvColor3.setBackgroundDrawable(color3);
+        tvColor3.setClickable(true);
     }
 }

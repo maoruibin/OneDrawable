@@ -19,9 +19,11 @@ package name.gudong.statebackground;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
@@ -42,40 +44,100 @@ public class StateBackgroundUtil {
      */
     private static final float DEFAULT_DARK_ALPHA_VALUE = 0.2f;
 
-    public static Drawable getBackgroundWithAlphaMode(@NonNull Context context, @DrawableRes int res) {
-        return getBackgroundWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
+    public static Drawable createDrawableBg(@NonNull Context context, @DrawableRes int res) {
+        return createDrawableBgWithDarkMode(context, res);
     }
 
-    public static Drawable getBackgroundWithAlphaMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return getBackground(context, res, StatePressedMode.ALPHA, alpha);
+    public static Drawable createColorBg(Context context, @ColorRes int res) {
+        return createColorBgWithDarkMode(context, res);
     }
 
-    public static Drawable getBackgroundWithDarkMode(@NonNull Context context, @DrawableRes int res) {
-        return getBackgroundWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
+    public static Drawable createColorBg(@ColorInt int res) {
+        return createColorBgWithDarkMode(res);
     }
 
-    public static Drawable getBackgroundWithDarkMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return getBackground(context, res, StatePressedMode.DARK, alpha);
+    public static Drawable createDrawableBgWithAlphaMode(@NonNull Context context, @DrawableRes int res) {
+        return createDrawableBgWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
+    }
+
+    public static Drawable createDrawableBgWithAlphaMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createDrawableBackground(context, res, StatePressedMode.ALPHA, alpha);
+    }
+
+    public static Drawable createDrawableBgWithDarkMode(@NonNull Context context, @DrawableRes int res) {
+        return createDrawableBgWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
+    }
+
+    public static Drawable createDrawableBgWithDarkMode(@NonNull Context context, @DrawableRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createDrawableBackground(context, res, StatePressedMode.DARK, alpha);
+    }
+
+    public static Drawable createColorBgWithAlphaMode(@NonNull Context context, @ColorRes int res) {
+        return createColorBgWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
+    }
+
+    public static Drawable createColorBgWithAlphaMode(@NonNull Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createColorBg(context, res, StatePressedMode.ALPHA, alpha);
+    }
+
+    public static Drawable createColorBgWithDarkMode(@ColorInt int res) {
+        return createColorBgWithDarkMode(res, DEFAULT_DARK_ALPHA_VALUE);
+    }
+
+    public static Drawable createColorBgWithDarkMode(@ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createColorBg(res, StatePressedMode.DARK, alpha);
+    }
+
+    public static Drawable createColorBgWithDarkMode(Context context, @ColorRes int res) {
+        return createColorBgWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
+    }
+
+    public static Drawable createColorBgWithDarkMode(Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createColorBg(context, res, StatePressedMode.DARK, alpha);
     }
 
     /**
      * 使用一个 Drawable 资源生成一个具有按下效果的 StateListDrawable
+     *
      * @param context context
-     * @param res drawable  resource
-     * @param mode mode for press
-     * @param alpha value
+     * @param res     drawable  resource
+     * @param mode    mode for press
+     * @param alpha   value
      * @return a stateListDrawable
      */
-    private static Drawable getBackground(@NonNull Context context, @DrawableRes int res, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    private static Drawable createDrawableBackground(@NonNull Context context, @DrawableRes int res, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         Drawable normal = context.getResources().getDrawable(res);
         Drawable pressed = context.getResources().getDrawable(res);
         pressed.mutate();
         setPressedStateDrawable(mode, alpha, pressed);
+
+        return createStateListDrawable(normal, pressed);
+    }
+
+    private static Drawable createColorBg(Context context, @ColorRes int resBackgroundColor, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        @ColorInt int color = context.getResources().getColor(resBackgroundColor);
+        return createColorBg(color, mode, alpha);
+    }
+
+    private static Drawable createColorBg(@ColorInt int resBackgroundColor, @StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        ColorDrawable colorDrawableNormal = new ColorDrawable();
+        ColorDrawable colorDrawablePressed = new ColorDrawable();
+
+        colorDrawableNormal.setColor(resBackgroundColor);
+        colorDrawablePressed.setColor(resBackgroundColor);
+        setPressedStateDrawable(mode, alpha, colorDrawablePressed);
+
+        return createStateListDrawable(colorDrawableNormal, colorDrawablePressed);
+    }
+
+    @NonNull
+    private static StateListDrawable createStateListDrawable(Drawable colorDrawableNormal, Drawable colorDrawablePressed) {
         final StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressed);
-        stateListDrawable.addState(new int[]{}, normal);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, colorDrawablePressed);
+        stateListDrawable.addState(new int[]{}, colorDrawableNormal);
         return stateListDrawable;
     }
+
 
     private static void setPressedStateDrawable(@StatePressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha, @NonNull Drawable pressed) {
         switch (mode) {
