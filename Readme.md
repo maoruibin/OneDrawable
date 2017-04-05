@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/maoruibin/StateBackgroundUtil.svg?branch=master)](https://travis-ci.org/maoruibin/StateBackgroundUtil)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ReView/blob/master/LICENSE.txt)
 
-Only use one drawable resource to set the background of the View.|[StateBackgroundUtil - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/statebackgroundutil.html)
+Only use one drawable resource to set the background of the View. | [StateBackgroundUtil - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/statebackgroundutil.html)
 
 ![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackground.gif)
 
@@ -18,7 +18,9 @@ Add it in your root build.gradle at the end of repositories:
 allprojects {
     repositories {
         ...
-        maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://jitpack.io'
+        }
     }
 }
 ```
