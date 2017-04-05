@@ -3,14 +3,18 @@
 [![Build Status](https://travis-ci.org/maoruibin/OneDrawable.svg?branch=master)](https://travis-ci.org/maoruibin/OneDrawable)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/OneDrawable/blob/master/LICENSE.txt)
 
-Only use one drawable/color resource to set the background of the View. | [OneDrawable - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/OneDrawable.html)
+![OneDrawable](http://7xr9gx.com1.z0.glb.clouddn.com/slogin.gif)
 
-![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackgroundv2.gif)
+Only use one drawable/color resource to set the background of the View. | [OneDrawable - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/OneDrawable.html)
 
 ## Sample
 Please see the [sample app](https://github.com/maoruibin/OneDrawable/tree/master/app/src/main/java/name/gudong/demo) for a library usage example.
 
 [sample apk](https://fir.im/leku)
+
+shot 
+
+![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackgroundv2.gif)
 
 ## Gradle
 Add it in your root build.gradle at the end of repositories:
