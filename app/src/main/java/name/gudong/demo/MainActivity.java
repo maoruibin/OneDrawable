@@ -42,19 +42,19 @@ public class MainActivity extends Activity {
         tvIcon5 = (TextView) findViewById(R.id.tv_icon_5);
         tvIcon6 = (TextView) findViewById(R.id.tv_icon_6);
 
-        Drawable icon1 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_name);
+        Drawable icon1 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_add);
         tvIcon1.setBackgroundDrawable(icon1);
         tvIcon1.setClickable(true);
 
-        Drawable icon2 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_name,0.4f);
+        Drawable icon2 = StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.ic_action_add,0.4f);
         tvIcon2.setBackgroundDrawable(icon2);
         tvIcon2.setClickable(true);
 
-        Drawable icon3 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_add);
+        Drawable icon3 = StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name);
         tvIcon3.setBackgroundDrawable(icon3);
         tvIcon3.setClickable(true);
 
-        tvIcon4.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_add,0.3f));
+        tvIcon4.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithAlphaMode(this,R.drawable.ic_action_name,0.3f));
         tvIcon4.setClickable(true);
 
         tvIcon5.setBackgroundDrawable(StateBackgroundUtil.getBackgroundWithDarkMode(this,R.drawable.bk_round));
