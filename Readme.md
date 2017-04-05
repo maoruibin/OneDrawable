@@ -8,7 +8,9 @@ Only use one drawable resource to set the background of the View.
 ![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackground.gif)
 
 ## Sample
-[download](https://fir.im/leku)
+Please see the [sample app](https://github.com/maoruibin/StateBackgroundUtil/tree/master/app/src/main/java/name/gudong/demo) for a library usage example.
+
+[sample apk](https://fir.im/leku)
 
 ## Gradle
 Add it in your root build.gradle at the end of repositories:
