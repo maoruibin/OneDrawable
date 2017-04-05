@@ -1,14 +1,14 @@
-# StateBackgroundUtil
+# OneDrawable
 
-[![Build Status](https://travis-ci.org/maoruibin/StateBackgroundUtil.svg?branch=master)](https://travis-ci.org/maoruibin/StateBackgroundUtil)
-[![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ReView/blob/master/LICENSE.txt)
+[![Build Status](https://travis-ci.org/maoruibin/OneDrawable.svg?branch=master)](https://travis-ci.org/maoruibin/OneDrawable)
+[![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/OneDrawable/blob/master/LICENSE.txt)
 
-Only use one drawable/color resource to set the background of the View. | [StateBackgroundUtil - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/statebackgroundutil.html)
+Only use one drawable/color resource to set the background of the View. | [OneDrawable - 仅使用一张资源图片为 View 设置具有按下效果的背景](http://gudong.name/2017/04/05/OneDrawable.html)
 
 ![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackgroundv2.gif)
 
 ## Sample
-Please see the [sample app](https://github.com/maoruibin/StateBackgroundUtil/tree/master/app/src/main/java/name/gudong/demo) for a library usage example.
+Please see the [sample app](https://github.com/maoruibin/OneDrawable/tree/master/app/src/main/java/name/gudong/demo) for a library usage example.
 
 [sample apk](https://fir.im/leku)
 
@@ -29,7 +29,7 @@ Add the dependency
 
 ```
 dependencies {
-    compile 'com.github.maoruibin:StateBackgroundUtil:1.0.1'
+    compile 'com.github.maoruibin:OneDrawable:1.0.2'
 }
 ```
 
@@ -37,9 +37,9 @@ dependencies {
 
 most situation
 
- - createDrawableBg(@NonNull Context context, @DrawableRes int res)
- - createColorBg(Context context, @ColorRes int res)
- - createColorBg(@ColorInt int res)
+ - createBgDrawable(@NonNull Context context, @DrawableRes int res)
+ - createBgColor(Context context, @ColorRes int res)
+ - createBgColor(@ColorInt int res)
 
 ### indicate pressed mode
 
@@ -48,21 +48,21 @@ pressed state with dark mode. In this mode, drawable will automatically cover a 
 drawable background
 
 ```java
-Drawable icon1 = StateBackgroundUtil.createDrawableBgWithDarkMode(this,R.drawable.ic_action_name);
+Drawable icon1 = OneDrawable.createBgDrawableWithDarkMode(this,R.drawable.ic_action_name);
 tvIcon1.setBackgroundDrawable(icon1);
 ```
 
 color background 
 
 ```java
-Drawable color2 = StateBackgroundUtil.createColorBg(this,R.color.colorAccent);
+Drawable color2 = OneDrawable.createBgColor(this,R.color.colorAccent);
 tvColor2.setBackgroundDrawable(color2);
 ```
 
 pressed state with alpha mode. In this mode, drawable will automatically change alpha value to 0.7 when pressed.
 
 ```java
-Drawable icon3 = StateBackgroundUtil.createDrawableBgWithAlphaMode(this,R.drawable.ic_action_add);
+Drawable icon3 = OneDrawable.createBgDrawableWithAlphaMode(this,R.drawable.ic_action_add);
 tvIcon3.setBackgroundDrawable(icon3);
 ```
 
@@ -71,17 +71,17 @@ tvIcon3.setBackgroundDrawable(icon3);
 Sometimes, maybe you need custom alpha value, you can use methods like follows.
  
 ```java
-Drawable icon2 = StateBackgroundUtil.createDrawableBgWithDarkMode(this,R.drawable.ic_action_add,0.4f);
+Drawable icon2 = OneDrawable.createBgDrawableWithDarkMode(this,R.drawable.ic_action_add,0.4f);
 tvIcon2.setBackgroundDrawable(icon2);
 
-Drawable icon4 = StateBackgroundUtil.createColorBgWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+Drawable icon4 = OneDrawable.createBgColorWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
 tvIcon4.setBackgroundDrawable(icon4);
 
-Drawable icon4 = StateBackgroundUtil.createColorBgWithDarkMode(this,R.color.colorAccent,0.3f);
+Drawable icon4 = OneDrawable.createBgColorWithDarkMode(this,R.color.colorAccent,0.3f);
 tvIcon4.setBackgroundDrawable(icon4);
 
 
-Drawable icon4 = StateBackgroundUtil.createColorBgWithAlphaMode(this,R.color.colorAccent,0.3f);
+Drawable icon4 = OneDrawable.createBgColorWithAlphaMode(this,R.color.colorAccent,0.3f);
 tvIcon4.setBackgroundDrawable(icon4);
 
 ``` 
