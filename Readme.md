@@ -1,4 +1,4 @@
-#StateBackgroundUtil
+# StateBackgroundUtil
 
 [![Build Status](https://travis-ci.org/maoruibin/StateBackgroundUtil.svg?branch=master)](https://travis-ci.org/maoruibin/StateBackgroundUtil)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/ReView/blob/master/LICENSE.txt)
