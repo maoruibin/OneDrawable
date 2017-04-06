@@ -39,11 +39,11 @@ dependencies {
 
 ## Usage
 
-most situation
+common usage
 
- - createBgDrawable(@NonNull Context context, @DrawableRes int res)
- - createBgColor(Context context, @ColorRes int res)
- - createBgColor(@ColorInt int res)
+ - OneDrawable.createBgDrawable(@NonNull Context context, @DrawableRes int res)
+ - OneDrawable.createBgColor(Context context, @ColorRes int resColor)
+ - OneDrawable.createBgColor(@ColorInt int intColor)
 
 ### indicate pressed mode
 
