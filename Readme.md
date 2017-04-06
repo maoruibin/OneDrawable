@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/maoruibin/OneDrawable.svg?branch=master)](https://travis-ci.org/maoruibin/OneDrawable)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/OneDrawable/blob/master/LICENSE.txt)
+[![](https://jitpack.io/v/maoruibin/OneDrawable.svg)](https://jitpack.io/#maoruibin/OneDrawable)
 
 ![OneDrawable](http://7xr9gx.com1.z0.glb.clouddn.com/slogin.gif)
 
