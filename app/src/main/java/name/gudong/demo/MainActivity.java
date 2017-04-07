@@ -50,6 +50,14 @@ public class MainActivity extends Activity {
         Drawable icon1 = OneDrawable.createBgDrawable(this,R.drawable.ic_action_add);
         tvIcon1.setBackgroundDrawable(icon1);
         tvIcon1.setClickable(true);
+        tvIcon1.setEnabled(false);
+
+        tvIcon1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvIcon1.setEnabled(true);
+            }
+        }, 3000);
 
         Drawable icon2 = OneDrawable.createBgDrawableWithDarkMode(this,R.drawable.ic_action_add,0.4f);
         tvIcon2.setBackgroundDrawable(icon2);
@@ -70,9 +78,23 @@ public class MainActivity extends Activity {
         Drawable color2 = OneDrawable.createBgColor(this,R.color.colorAccent);
         tvColor2.setBackgroundDrawable(color2);
         tvColor2.setClickable(true);
+        tvColor2.setEnabled(false);
+        tvColor2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvColor2.setEnabled(true);
+            }
+        }, 1000);
 
         Drawable color3 = OneDrawable.createBgColor(Color.parseColor("#cccccc"));
         tvColor3.setBackgroundDrawable(color3);
         tvColor3.setClickable(true);
+        tvColor3.setEnabled(false);
+        tvColor3.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvColor3.setEnabled(true);
+            }
+        }, 1000);
     }
 }

@@ -108,10 +108,13 @@ public class OneDrawable {
     private static Drawable createBgDrawable(@NonNull Context context, @DrawableRes int res, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         Drawable normal = context.getResources().getDrawable(res);
         Drawable pressed = context.getResources().getDrawable(res);
+        Drawable unable = context.getResources().getDrawable(res);
         pressed.mutate();
+        unable.mutate();
         setPressedStateDrawable(mode, alpha, pressed);
+        setUnableStateDrawable(unable);
 
-        return createStateListDrawable(normal, pressed);
+        return createStateListDrawable(normal, pressed,unable);
     }
 
     private static Drawable createBgColor(Context context, @ColorRes int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
@@ -122,18 +125,22 @@ public class OneDrawable {
     private static Drawable createBgColor(@ColorInt int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         ColorDrawable colorDrawableNormal = new ColorDrawable();
         ColorDrawable colorDrawablePressed = new ColorDrawable();
+        ColorDrawable colorDrawableUnable = new ColorDrawable();
 
         colorDrawableNormal.setColor(resBackgroundColor);
         colorDrawablePressed.setColor(resBackgroundColor);
+        colorDrawableUnable.setColor(resBackgroundColor);
         setPressedStateDrawable(mode, alpha, colorDrawablePressed);
+        setUnableStateDrawable(colorDrawableUnable);
 
-        return createStateListDrawable(colorDrawableNormal, colorDrawablePressed);
+        return createStateListDrawable(colorDrawableNormal, colorDrawablePressed,colorDrawableUnable);
     }
 
-    @NonNull
-    private static StateListDrawable createStateListDrawable(Drawable colorDrawableNormal, Drawable colorDrawablePressed) {
+  @NonNull
+    private static StateListDrawable createStateListDrawable(Drawable colorDrawableNormal, Drawable colorDrawablePressed, Drawable colorDrawableUnable) {
         final StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, colorDrawablePressed);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_enabled}, colorDrawableUnable);
         stateListDrawable.addState(new int[]{}, colorDrawableNormal);
         return stateListDrawable;
     }
@@ -150,6 +157,10 @@ public class OneDrawable {
             default:
                 pressed.setAlpha(convertAlphaToInt(alpha));
         }
+    }
+
+    private static void setUnableStateDrawable(@NonNull Drawable unable) {
+        unable.setAlpha(convertAlphaToInt(0.5f));
     }
 
     private static int convertAlphaToInt(@FloatRange(from = 0.0f, to = 1.0f) float alpha) {
