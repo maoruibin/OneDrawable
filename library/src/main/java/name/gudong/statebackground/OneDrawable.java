@@ -17,11 +17,15 @@
 package name.gudong.statebackground;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -48,13 +52,10 @@ public class OneDrawable {
         return createBgDrawableWithDarkMode(context, res);
     }
 
-    public static Drawable createBgColor(Context context, @ColorRes int res) {
-        return createBgColorWithDarkMode(context, res);
+    public static Drawable createBgColor(Context context, @ColorInt int res) {
+        return createBgColorWithDarkMode(context,res);
     }
 
-    public static Drawable createBgColor(@ColorInt int res) {
-        return createBgColorWithDarkMode(res);
-    }
 
     public static Drawable createBgDrawableWithAlphaMode(@NonNull Context context, @DrawableRes int res) {
         return createBgDrawableWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
@@ -72,29 +73,22 @@ public class OneDrawable {
         return createBgDrawable(context, res, PressedMode.DARK, alpha);
     }
 
-    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorRes int res) {
+    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorInt int res) {
         return createBgColorWithAlphaMode(context, res, DEFAULT_ALPHA_VALUE);
     }
 
-    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    public static Drawable createBgColorWithAlphaMode(@NonNull Context context, @ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         return createBgColor(context, res, PressedMode.ALPHA, alpha);
     }
 
-    public static Drawable createBgColorWithDarkMode(@ColorInt int res) {
-        return createBgColorWithDarkMode(res, DEFAULT_DARK_ALPHA_VALUE);
+    public static Drawable createBgColorWithDarkMode(@NonNull Context context,@ColorInt int res){
+        return createBgColor(context,res, PressedMode.DARK, DEFAULT_DARK_ALPHA_VALUE);
     }
 
-    public static Drawable createBgColorWithDarkMode(@ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createBgColor(res, PressedMode.DARK, alpha);
+    public static Drawable createBgColorWithDarkMode(@NonNull Context context,@ColorInt int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        return createBgColor(context,res, PressedMode.DARK, alpha);
     }
 
-    public static Drawable createBgColorWithDarkMode(Context context, @ColorRes int res) {
-        return createBgColorWithDarkMode(context, res, DEFAULT_DARK_ALPHA_VALUE);
-    }
-
-    public static Drawable createBgColorWithDarkMode(Context context, @ColorRes int res, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        return createBgColor(context, res, PressedMode.DARK, alpha);
-    }
 
     /**
      * 使用一个 Drawable 资源生成一个具有按下效果的 StateListDrawable
@@ -109,25 +103,19 @@ public class OneDrawable {
         Drawable normal = context.getResources().getDrawable(res);
         Drawable pressed = context.getResources().getDrawable(res);
         pressed.mutate();
-        setPressedStateDrawable(mode, alpha, pressed);
-
+        pressed = getPressedStateDrawable(context, mode, alpha, pressed);
         return createStateListDrawable(normal, pressed);
     }
 
-    private static Drawable createBgColor(Context context, @ColorRes int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
-        @ColorInt int color = context.getResources().getColor(resBackgroundColor);
-        return createBgColor(color, mode, alpha);
-    }
 
-    private static Drawable createBgColor(@ColorInt int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+    private static Drawable createBgColor(Context context, @ColorInt int resBackgroundColor, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
         ColorDrawable colorDrawableNormal = new ColorDrawable();
         ColorDrawable colorDrawablePressed = new ColorDrawable();
 
         colorDrawableNormal.setColor(resBackgroundColor);
         colorDrawablePressed.setColor(resBackgroundColor);
-        setPressedStateDrawable(mode, alpha, colorDrawablePressed);
-
-        return createStateListDrawable(colorDrawableNormal, colorDrawablePressed);
+        Drawable pressed = getPressedStateDrawable(context, mode, alpha, colorDrawablePressed);
+        return createStateListDrawable(colorDrawableNormal, pressed);
     }
 
     @NonNull
@@ -139,7 +127,11 @@ public class OneDrawable {
     }
 
 
-    private static void setPressedStateDrawable(@PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha, @NonNull Drawable pressed) {
+    private static Drawable getPressedStateDrawable(Context context, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha, @NonNull Drawable pressed) {
+        //ColorDrawable is not supported on 4.4 because the size of the ColorDrawable can not be determined unless the View size is passed in
+        if (isKitkat() && !(pressed instanceof ColorDrawable)) {
+            return kitkatDrawable(context, pressed, mode, alpha);
+        }
         switch (mode) {
             case PressedMode.ALPHA:
                 pressed.setAlpha(convertAlphaToInt(alpha));
@@ -150,6 +142,27 @@ public class OneDrawable {
             default:
                 pressed.setAlpha(convertAlphaToInt(alpha));
         }
+        return pressed;
+    }
+
+    private static Drawable kitkatDrawable(Context context, @NonNull Drawable pressed, @PressedMode.Mode int mode, @FloatRange(from = 0.0f, to = 1.0f) float alpha) {
+        Bitmap bitmap = Bitmap.createBitmap(pressed.getIntrinsicWidth(), pressed.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas myCanvas = new Canvas(bitmap);
+        switch (mode) {
+            case PressedMode.ALPHA:
+                pressed.setAlpha(convertAlphaToInt(alpha));
+                break;
+            case PressedMode.DARK:
+                pressed.setColorFilter(alphaColor(Color.BLACK, convertAlphaToInt(alpha)), PorterDuff.Mode.SRC_ATOP);
+                break;
+        }
+        pressed.setBounds(0, 0, pressed.getIntrinsicWidth(), pressed.getIntrinsicHeight());
+        pressed.draw(myCanvas);
+        return new BitmapDrawable(context.getResources(), bitmap);
+    }
+
+    private static boolean isKitkat() {
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT;
     }
 
     private static int convertAlphaToInt(@FloatRange(from = 0.0f, to = 1.0f) float alpha) {
