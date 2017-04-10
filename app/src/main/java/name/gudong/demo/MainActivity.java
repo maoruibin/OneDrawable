@@ -18,7 +18,9 @@ package name.gudong.demo;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -87,7 +89,7 @@ public class MainActivity extends Activity {
         }, 1000);
 
         Drawable color3 = OneDrawable.createBgColor(Color.parseColor("#cccccc"));
-        tvColor3.setBackgroundDrawable(color3);
+        tvColor3.setBackground(color3);
         tvColor3.setClickable(true);
         tvColor3.setEnabled(false);
         tvColor3.postDelayed(new Runnable() {
@@ -96,5 +98,18 @@ public class MainActivity extends Activity {
                 tvColor3.setEnabled(true);
             }
         }, 1000);
+
+        tvColor3.setBackground(makeSelector(Color.BLUE));
+    }
+
+    public static StateListDrawable makeSelector(int color) {
+        StateListDrawable res = new StateListDrawable();
+        res.setExitFadeDuration(100);
+        res.setAlpha(255);
+        ColorDrawable normal = new ColorDrawable(color);
+        normal.setAlpha(117);
+        res.addState(new int[]{android.R.attr.state_pressed}, normal);
+        res.addState(new int[]{}, new ColorDrawable(color));
+        return res;
     }
 }
