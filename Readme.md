@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/maoruibin/OneDrawable.svg?branch=master)](https://travis-ci.org/maoruibin/OneDrawable)
 [![](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/maoruibin/OneDrawable/blob/master/LICENSE.txt)
+[![](https://jitpack.io/v/maoruibin/OneDrawable.svg)](https://jitpack.io/#maoruibin/OneDrawable)
 
 ![OneDrawable](http://7xr9gx.com1.z0.glb.clouddn.com/slogin.gif)
 
@@ -39,11 +40,11 @@ dependencies {
 
 ## Usage
 
-most situation
+common usage
 
- - createBgDrawable(@NonNull Context context, @DrawableRes int res)
- - createBgColor(Context context, @ColorRes int res)
- - createBgColor(@ColorInt int res)
+ - OneDrawable.createBgDrawable(@NonNull Context context, @DrawableRes int res)
+ - OneDrawable.createBgColor(Context context, @ColorRes int resColor)
+ - OneDrawable.createBgColor(@ColorInt int intColor)
 
 ### indicate pressed mode
 
