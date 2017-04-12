@@ -34,17 +34,22 @@ Add the dependency
 
 ```
 dependencies {
-    compile 'com.github.maoruibin:OneDrawable:1.0.2'
+    compile 'com.github.maoruibin:OneDrawable:1.1.0'
 }
 ```
 
 ## Usage
-
 common usage
 
- - OneDrawable.createBgDrawable(@NonNull Context context, @DrawableRes int res)
- - OneDrawable.createBgColor(Context context, @ColorRes int resColor)
- - OneDrawable.createBgColor(@ColorInt int intColor)
+```java
+Drawable drawable = OneDrawable.createBgDrawable(this,R.drawable.ic_action_name);
+tvIcon1.setBackgroundDrawable(drawable);
+```
+
+## common api
+
+ * createBgDrawable (use drawable resource create a background)
+ * createBgColor (use color resource create a background)
 
 ### indicate pressed mode
 
@@ -92,10 +97,6 @@ tvIcon4.setBackgroundDrawable(icon4);
 ``` 
 
 Note: `Because of only clickable view show it's pressed drawable, so you should set view clickable as true before you want to watch pressed effect.`
-
-
-## TODO
-- [X] support color background 
 
 ## Author
 [http://gudong.name](http://gudong.name)

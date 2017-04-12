@@ -47,32 +47,54 @@ public class MainActivity extends Activity {
         tvColor3 = (TextView) findViewById(R.id.tv_color_3);
 
 
-        Drawable icon1 = OneDrawable.createBgDrawable(this,R.drawable.ic_action_add);
+        Drawable icon1 = OneDrawable.createBgDrawable(this, R.drawable.ic_action_add);
         tvIcon1.setBackgroundDrawable(icon1);
         tvIcon1.setClickable(true);
+        tvIcon1.setEnabled(false);
 
-        Drawable icon2 = OneDrawable.createBgDrawableWithDarkMode(this,R.drawable.ic_action_add,0.4f);
+        tvIcon1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvIcon1.setEnabled(true);
+            }
+        }, 3000);
+
+        Drawable icon2 = OneDrawable.createBgDrawableWithDarkMode(this, R.drawable.ic_action_add, 0.4f);
         tvIcon2.setBackgroundDrawable(icon2);
         tvIcon2.setClickable(true);
 
-        Drawable icon3 = OneDrawable.createBgDrawableWithAlphaMode(this,R.drawable.ic_action_name);
+        Drawable icon3 = OneDrawable.createBgDrawableWithAlphaMode(this, R.drawable.ic_action_name);
         tvIcon3.setBackgroundDrawable(icon3);
         tvIcon3.setClickable(true);
 
-        Drawable icon4 = OneDrawable.createBgDrawableWithAlphaMode(this,R.drawable.ic_action_name,0.3f);
+        Drawable icon4 = OneDrawable.createBgDrawableWithAlphaMode(this, R.drawable.ic_action_name, 0.3f);
         tvIcon4.setBackgroundDrawable(icon4);
         tvIcon4.setClickable(true);
 
-        Drawable color1 = OneDrawable.createBgColorWithAlphaMode(this,R.color.colorPrimary);
+        Drawable color1 = OneDrawable.createBgColorWithAlphaMode(this, getResources().getColor(R.color.colorPrimary));
         tvColor1.setBackgroundDrawable(color1);
         tvColor1.setClickable(true);
 
-        Drawable color2 = OneDrawable.createBgColor(this,R.color.colorAccent);
+        Drawable color2 = OneDrawable.createBgColor(this, getResources().getColor(R.color.colorAccent));
         tvColor2.setBackgroundDrawable(color2);
         tvColor2.setClickable(true);
+        tvColor2.setEnabled(false);
+        tvColor2.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvColor2.setEnabled(true);
+            }
+        }, 1000);
 
-        Drawable color3 = OneDrawable.createBgColor(Color.parseColor("#cccccc"));
+        Drawable color3 = OneDrawable.createBgColor(this, Color.parseColor("#cccccc"));
         tvColor3.setBackgroundDrawable(color3);
         tvColor3.setClickable(true);
+        tvColor3.setEnabled(false);
+        tvColor3.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvColor3.setEnabled(true);
+            }
+        }, 1000);
     }
 }
