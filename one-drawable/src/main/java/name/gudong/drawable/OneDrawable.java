@@ -14,7 +14,7 @@
  *     limitations under the License.
  */
 
-package name.gudong.statebackground;
+package name.gudong.drawable;
 
 import android.content.Context;
 import android.graphics.Bitmap;

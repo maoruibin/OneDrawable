@@ -18,23 +18,10 @@ shot
 ![demo](http://7xr9gx.com1.z0.glb.clouddn.com/statebackgroundv2.gif)
 
 ## Gradle
-Add it in your root build.gradle at the end of repositories:
-```gradle
-allprojects {
-    repositories {
-        ...
-        maven {
-            url 'https://jitpack.io'
-        }
-    }
-}
-```
-
-Add the dependency
 
 ```
 dependencies {
-    compile 'com.github.maoruibin:OneDrawable:1.1.0'
+    compile 'name.gudong:one-drawable:1.1.1'
 }
 ```
 

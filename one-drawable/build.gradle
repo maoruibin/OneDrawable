@@ -24,7 +24,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 25
         versionCode 1
-        versionName "1.1.0"
+        versionName "1.1.1"
     }
     buildTypes {
         release {
@@ -37,3 +37,31 @@ android {
 dependencies {
     compile 'com.android.support:support-annotations:25.3.1'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'one-drawable'
+
+    publishedGroupId = 'name.gudong'
+    libraryName = 'OneDrawable'
+    artifact = 'one-drawable'
+
+    libraryDescription = 'Only use one drawable/color resource to set the background of the View.'
+
+    siteUrl = 'https://github.com/maoruibin/OneDrawable'
+    gitUrl = 'https://github.com/maoruibin/OneDrawable.git'
+
+    libraryVersion = '1.1.1'
+
+    developerId = 'maoruibin'
+    developerName = 'gudong'
+    developerEmail = 'gudong.name@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+// Place it at the end of the file
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
